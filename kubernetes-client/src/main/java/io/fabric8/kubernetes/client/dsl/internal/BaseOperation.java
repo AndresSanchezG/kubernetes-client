@@ -615,7 +615,7 @@ public class BaseOperation<T extends HasMetadata, L extends KubernetesResourceLi
   @Override
   public Watch watch(ListOptions options, final Watcher<T> watcher) {
     CompletableFuture<Watch> startedFuture = submitWatch(options, watcher);
-    Utils.waitUntilReadyOrFail(startedFuture, -1, TimeUnit.SECONDS);
+    Utils.waitUntilReadyOrFail(startedFuture, 10, TimeUnit.SECONDS);
     return startedFuture.join();
   }
 
